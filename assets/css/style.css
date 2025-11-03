@@ -1,85 +1,160 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background-color: #f4f6f8;
-  color: #333;
+/* Easter Egg Styles */
+#aiAssistant {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  max-width: calc(100vw - 40px);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  overflow: hidden;
+  animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 9999;
 }
 
-.container {
-  display: flex;
-  min-height: 100vh;
+@keyframes slideIn {
+  from {
+    transform: translateY(100%) scale(0.8);
+    opacity: 0;}
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background: #111827;
-  color: #fff;
-  padding: 30px 20px;
+.ai-header {
+  background: rgba(0,0,0,0.2);
+  padding: 16px 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
-.profile-img {
-  width: 120px;
-  height: 120px;
+.ai-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+}
+
+.ai-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #00ffff, #00ff88);
   border-radius: 50%;
-  margin-bottom: 15px;
-  border: 3px solid #1f2937;
-}
-
-.sidebar h2 {
-  margin: 10px 0 5px;
-  font-size: 20px;
-}
-
-.sidebar p {
-  font-size: 14px;
-  text-align: center;
-}
-
-.sidebar a {
-  color: #93c5fd;
-  text-decoration: none;
-}
-
-.sidebar .social {
-  margin-top: 15px;
-}
-
-/* Main */
-.main {
-  flex: 1;
   display: flex;
-  flex-direction: column;
-}
-
-/* Navbar */
-.navbar {
-  background-color: #1f2937;
-  display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 15px;
+  animation: pulse 2s ease-in-out infinite;
+  font-size: 18px;
 }
 
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid transparent;
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
-.navbar a:hover,
-.navbar a.active {
-  border-bottom: 2px solid #3b82f6;
+.close-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  transition: all 0.3s;
 }
 
-/* Content */
-.content {
-  padding: 40px;
-  background: #fff;
-  border-radius: 10px;
-  margin: 20px;
+.close-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: rotate(90deg);
+}
+
+.ai-body {
+  padding: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.ai-message {
+  background: rgba(255,255,255,0.15);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  font-size: 14px;
+  animation: fadeIn 0.5s;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ai-message strong {
+  color: #00ffff;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tech-badge {
+  display: inline-block;
+  background: rgba(0,255,255,0.2);
+  color: #00ffff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin: 4px 4px 4px 0;
+  border: 1px solid rgba(0,255,255,0.3);
+}
+
+.ai-footer {
+  padding: 16px 20px;
+  background: rgba(0,0,0,0.2);
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+
+.konami-sequence {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,255,255,0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #00ffff;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 9998;
+}
+
+.konami-sequence.show {
+  opacity: 1;
+}
+
+/* Mobile responsive adjustments for Easter egg */
+@media (max-width: 768px) {
+  #aiAssistant {
+    width: calc(100vw - 40px);
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  
+  .konami-sequence {
+    top: 10px;
+    right: 10px;
+    font-size: 10px;
+    padding: 6px 10px;
+  }
 }
