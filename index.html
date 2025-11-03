@@ -34,11 +34,99 @@
       <section class="content">
         <h1>👋 About Me</h1>
         <p>
-          I’m Ahmad Shahzad — an AI Automation Architect and Embedded Vision Engineer.
+          I'm Ahmad Shahzad — an AI Automation Architect and Embedded Vision Engineer.
           I build production-grade systems combining GPT-based AI agents, real-time vision models, and full-stack web apps.
         </p>
       </section>
     </main>
   </div>
+
+  <!-- Easter Egg Modal -->
+  <div id="aiAssistant">
+    <div class="ai-header">
+      <div class="ai-title">
+        <div class="ai-icon">🤖</div>
+        <span>Secret AI Unlocked!</span>
+      </div>
+      <button class="close-btn" onclick="closeAssistant()">×</button>
+    </div>
+    <div class="ai-body">
+      <div class="ai-message">
+        <strong>🎉 You found the secret!</strong>
+        Hey there, curious developer! You've discovered my hidden AI assistant. This is what happens when an ML engineer gets creative with keyboard events...
+      </div>
+      <div class="ai-message">
+        <strong>💡 Fun Fact:</strong>
+        This portfolio was built with the same attention to detail I put into my ML pipelines. No black boxes here—just clean code and clever features!
+      </div>
+      <div class="ai-message">
+        <strong>🛠️ Current Stack:</strong>
+        <div>
+          <span class="tech-badge">YOLOv8</span>
+          <span class="tech-badge">LangGraph</span>
+          <span class="tech-badge">AWS Lambda</span>
+          <span class="tech-badge">FastAPI</span>
+          <span class="tech-badge">PyTorch</span>
+        </div>
+      </div>
+      <div class="ai-message">
+        <strong>☕ Coffee Count:</strong>
+        Approximately 3,847 cups consumed while debugging neural networks. Still going strong! 💪
+      </div>
+    </div>
+    <div class="ai-footer">
+      Powered by curiosity & caffeine ☕
+    </div>
+  </div>
+
+  <div class="konami-sequence" id="sequenceDisplay"></div>
+
+  <script>
+    // Easter Egg: Type "athena" anywhere on the page
+    let secretCode = '';
+    const trigger = 'athena';
+    const sequenceDisplay = document.getElementById('sequenceDisplay');
+    let hideTimeout;
+
+    document.addEventListener('keypress', (e) => {
+      secretCode += e.key.toLowerCase();
+      
+      sequenceDisplay.textContent = secretCode.slice(-trigger.length);
+      sequenceDisplay.classList.add('show');
+      
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
+        sequenceDisplay.classList.remove('show');
+      }, 2000);
+
+      if (secretCode.length > trigger.length) {
+        secretCode = secretCode.slice(-trigger.length);
+      }
+
+      if (secretCode === trigger) {
+        activateEasterEgg();
+        secretCode = '';
+        sequenceDisplay.classList.remove('show');
+      }
+    });
+
+    function activateEasterEgg() {
+      const assistant = document.getElementById('aiAssistant');
+      assistant.style.display = 'block';
+    }
+
+    function closeAssistant() {
+      const assistant = document.getElementById('aiAssistant');
+      assistant.style.animation = 'slideIn 0.3s reverse';
+      setTimeout(() => {
+        assistant.style.display = 'none';
+        assistant.style.animation = '';
+      }, 300);
+    }
+
+    console.log('%c🚀 Hey Developer!', 'font-size: 24px; font-weight: bold; color: #667eea;');
+    console.log('%cYou seem curious! Try typing "athena" anywhere on this page...', 'font-size: 14px; color: #00ffff;');
+    console.log('%c\nOr just check out my GitHub: github.com/ahmadshahzad', 'font-size: 12px; color: #888;');
+  </script>
 </body>
 </html>
